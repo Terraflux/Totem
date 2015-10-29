@@ -1,0 +1,7 @@
+<%= form_for [inscription, scribble], remote: true do |f| %>
+	<div class="form-group">
+		<%= f.label :body, class: 'sr-only' %>
+		<%= f.text_field :body, class: 'form-control', placeholder: "Scribble Here" %>
+	</div>
+	<%= f.submit "Submit", class: 'btn btn-default pull-right' %>
+<% end %>

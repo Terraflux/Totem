@@ -1,0 +1,22 @@
+<%= form_for [inscription] do |f| %>
+	<% if inscription.errors.any? %>
+		<div class="alert alert-danger">
+			<h4><%= pluralize(inscription.errors.count, "error") %>.</h4>
+			<ul>
+				<% inscription.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<%= form_group_tag(inscription.errors[:title]) do %>
+		<%= f.label :title %>
+		<%= f.text_field :title, class: 'form-control',
+		placeholder: "Enter Inscription Title" %>
+	<% end %>
+	<%= form_group_tag(inscription.errors[:body]) do %>
+		<%= f.label :body %>
+		<%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter Inscription Body" %>
+	<% end %>
+	<%= f.submit "Save inscription", class: 'btn btn-success' %>
+<% end %>

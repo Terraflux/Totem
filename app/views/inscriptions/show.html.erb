@@ -1,0 +1,26 @@
+<div class="header">
+	<h1>
+		<%= render @inscription %>
+	</h1>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="header">
+			<%= link_to "Edit", edit_inscription_path, class: 'btn btn-success' %>
+		</div>
+		<div class="header">
+			<%= link_to "Delete", @inscription, method: :delete, class: 'btn btn-danger', data: {confirm: 'Destroy Inscription?'} %>
+		</div>
+		<div>
+			<h3>Scribbles</h3>
+			<div class='js-scribbles'>
+				<%= render @inscription.scribbles %>
+			</div>
+		</div>
+		<div>
+			<div class='new-scribble'>
+				<%= render 'scribbles/form', scribble: Scribble.new, inscription: @inscription %>
+			</div>
+		</div>
+	</div>
+</div>
