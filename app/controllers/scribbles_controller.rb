@@ -1,51 +1,33 @@
 class ScribblesController < ApplicationController
 
-	def index
-		@scribbles = Scribble.all
-	end
-
-	def show
-		@scribble = Scribble.find(params[:id])
-	end
-
-	def new
-		@scribble = Scribble.new
-	end
-
 	def create
+		@inscription = Inscription.find(params[:inscription_id])
 		@scribble = Scribble.new(scribble_params)
+		@new_scribble = Scribble.new
 		if @scribble.save
-			redirect_to @scribble, notice: "Scribble Created"
+			flash[:notice] = "Scribble Created"
 		else
 			flash[:error] = "Creation Error"
-			render :new
 		end
-	end
 
-	def edit
-		@scribble = Scribble.find(params[:id])
-	end
-
-	def update
-		@scribble = Scribble.find(params[:id])
-		@scribble.assign_attributes(scribble_params)
-		if @scribble.save
-			flash[:notice] = "Scribble Updated"
-			redirect_to @scribble
-		else
-			flash[:error] = "Update Error"
-			render :edit
+		respond_to do |format|
+			format.html
+			format.js
 		end
 	end
 
 	def destroy
+		@inscription = Inscription.find(params[:inscription_id])
 		@scribble = Scribble.find(params[:id])
 		if @scribble.destroy
-			flash[:notice] = "\#{@scribble.title}\" Destroyed"
-			redirect_to action: :index
+			flash[:notice] = "Scribble Destroyed"
 		else
 			flash[:error] = "Destruction Error"
-			render :show
+		end
+
+		respond_to do |format|
+			format.html
+			format.js
 		end
 	end
 
@@ -53,7 +35,7 @@ class ScribblesController < ApplicationController
 	private
 
 	def scribble_params
-		params.require(:scribble).permit(:title, :body)
+		params.require(:scribble).permit(:body)
 	end
 
 end

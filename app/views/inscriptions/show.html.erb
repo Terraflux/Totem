@@ -13,7 +13,14 @@
 		</div>
 		<div>
 			<h3>Scribbles</h3>
-			<%= render @inscription.scribbles %>
+			<div class='js-scribbles'>
+				<%= render @inscription.scribbles %>
+			</div>
+		</div>
+		<div>
+			<div class='new-scribble'>
+				<%= render 'scribbles/form', scribble: Scribble.new, inscription: @inscription %>
+			</div>
 		</div>
 	</div>
 </div>

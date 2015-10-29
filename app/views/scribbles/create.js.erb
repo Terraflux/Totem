@@ -1,0 +1,7 @@
+<% if @scribble.valid? %>
+	$('.js-scribbles').prepend("<%= escape_javascript(render(@scribble)) %>");
+	$('.new-scribble').html("<%= escape_javascript(render partial: 'scribbles/form', locals: {inscription: @inscription, scribble: @new_scribble}) %>");
+<% else %>
+	$('.flash').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:error] %></div>");
+	$('.new-scribble').html("<%= escape_javascript(render partial: 'scribbles/form', locals: {inscription: @inscription, scribble: @scribble}) %>");
+<% end %>

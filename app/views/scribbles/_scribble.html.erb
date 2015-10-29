@@ -1,0 +1,13 @@
+<%= content_tag :div, class: 'media', id: "scribble-#{scribble.id}" do %>
+	<div class="media">
+		<div class="media-body">
+			<small>
+				<p><%= scribble.body %></p>
+				<p><%= scribble.created_at %></p>
+			</small>
+		</div>
+		<div class="btn btn-danger">
+			<%= link_to "Delete", [scribble.inscription, scribble], method: :delete, remote: true %>
+		</div>
+	</div>
+<% end %>
