@@ -1,5 +1,9 @@
 This README is for Totem
 
+
 CD into the project folder and use the "rails s" command to start the server
+
+rake db:seed = seeds database with lorem ipsum
+rake db:reset = resets database
 
 Navigate to localhost:3000 to browse
