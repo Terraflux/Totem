@@ -1,35 +1,60 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@font-face {
+    font-family: 'TQF';
+    src: url('TQF_PCMedium.woff') format('woff'),
+		 url('TQF_PCMedium.woff2') format('woff2');
+}
+
 body{
 	background-color: #1d1d1d;
 	font-family: "Tahoma","Verdana","Arial","Helvetica",sans-serif;;
 }
 
-.left-margin {
-	margin-left: 20px;
+.navbar{
+	background-color: #fff;
+}
+
+.navbar-nav > li > a:hover {
+	background-color: #00A99D;
+	color: #FFF;
+}
+
+.left-padding {
+	padding-left: 15px;
 }
 
 .spacer {
 	margin-bottom: 20px;
 }
 
+label {
+	color: #FFF;
+}
+
 h1, h3 {
 	color: #FFFFFF;
+	font-family: 'TQF';
 	}
 
 a {
-	color: #efb743;
+	color: #00A99D;
 }
 
 a:hover {
-	color: #f68600;
+	color: #007F76;
 	text-decoration: none;
 }
 
 p {
 	color: #FFFFFF;
 	font-size: 14px;
+}
+
+.inscriptions {
+	border: #FFF 1px solid;
+	border-radius: 10px;
 }
 
 //inscription dates
@@ -39,20 +64,43 @@ p.date{
 
 //inscribe something button
 .btn-success {
-	background-color: #449d44;
+	background-color: #00A99D;
 	color: #FFFFFF;
-	border-color: #449d44;
+	border-color: #00A99D;
 }
 
+.btn-success:hover {
+	background-color: #007F76;
+	border-color: #007F76;
+}
+
+//delete button
+.btn-danger {
+	background-color: #da0159;
+	border-color: #da0159;
+}
+
+.btn-danger:hover {
+	background-color: #cf0154;
+	border-color: #cf0154;
+}
+
+//edit button
 .edit{
-    background-color: #709e03;
-    border-color: #709e03;
+    background-color: #25a190;
+    border-color: #25a190;
     color: #fff;
 }
 
+.edit:hover{
+    background-color: #007f76;
+    border-color: #007f76;
+}
+
+
 //alerts
 .alert-success {
-    background-color: #449d44;
-    border-color: #6f9e00;
+    background-color: #00A99D;
+    border-color: #00A99D;
     color: #fff;
 }
