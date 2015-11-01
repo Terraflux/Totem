@@ -1,2 +1,58 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body{
+	background-color: #1d1d1d;
+	font-family: "Tahoma","Verdana","Arial","Helvetica",sans-serif;;
+}
+
+.left-margin {
+	margin-left: 20px;
+}
+
+.spacer {
+	margin-bottom: 20px;
+}
+
+h1, h3 {
+	color: #FFFFFF;
+	}
+
+a {
+	color: #efb743;
+}
+
+a:hover {
+	color: #f68600;
+	text-decoration: none;
+}
+
+p {
+	color: #FFFFFF;
+	font-size: 14px;
+}
+
+//inscription dates
+p.date{
+	color:#6a6c59;
+}
+
+//inscribe something button
+.btn-success {
+	background-color: #449d44;
+	color: #FFFFFF;
+	border-color: #449d44;
+}
+
+.edit{
+    background-color: #709e03;
+    border-color: #709e03;
+    color: #fff;
+}
+
+//alerts
+.alert-success {
+    background-color: #449d44;
+    border-color: #6f9e00;
+    color: #fff;
+}

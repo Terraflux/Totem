@@ -9,33 +9,49 @@
 <body>
 
 
-
-	<div class="container navbar">
-		<div class="navblock pull-left"><%= link_to "Inscriptions", root_path %></div>
-	</div>
-
-
-	<div class="container navbar">
-		<div class="flash">
-			<% if flash[:notice] %>
-				<div class="alert alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<%= flash[:notice] %>
+	<div class="container">
+		<nav class="navbar navbar-inverse">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					</button>
 				</div>
-			<% elsif flash[:error] %>
-				<div class="alert alert-danger">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<%= flash[:error] %>
-				</div>
-			<% elsif flash[:alert] %>
-				<div class="alert alert-warning">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<%= flash[:alert] %>
-				</div>
-			<% end %>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><%= link_to "Inscriptions", root_path %></li>
+				</div><!-- /.navbar-collapse -->
+		</nav>
+
+
+		<div class="container navbar">
+			<div class="flash">
+				<% if flash[:notice] %>
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:notice] %>
+					</div>
+				<% elsif flash[:error] %>
+					<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:error] %>
+					</div>
+				<% elsif flash[:alert] %>
+					<div class="alert alert-warning">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:alert] %>
+					</div>
+				<% end %>
+			</div>
 		</div>
+
+		<%= yield %>
 	</div>
-<%= yield %>
 
 </body>
 </html>

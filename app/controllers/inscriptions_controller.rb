@@ -8,7 +8,9 @@ class InscriptionsController < ApplicationController
 		@inscription = Inscription.find(params[:id])
 	end
 
+
 	def new
+		puts('new inscription')
 		@inscription = Inscription.new
 	end
 

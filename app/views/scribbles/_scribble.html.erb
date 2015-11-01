@@ -6,8 +6,8 @@
 				<p><%= scribble.created_at %></p>
 			</small>
 		</div>
-		<div class="btn btn-danger">
-			<%= link_to "Delete", [scribble.inscription, scribble], method: :delete, remote: true %>
+		<div class="spacer">
+			<%= link_to "Delete", [scribble.inscription, scribble], method: :delete, class: 'btn btn-danger', remote: true %>
 		</div>
 	</div>
 <% end %>
