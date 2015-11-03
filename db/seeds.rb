@@ -27,7 +27,8 @@ inscriptions = Inscription.all
 20.times do
 	Scribble.create!(
 		body: Faker::Lorem.paragraph,
-		inscription_id: inscriptions.sample.id)
+		inscription_id: inscriptions.sample.id,
+		alias: aliases.sample)
 end
 
 scribbles = Scribble.all
