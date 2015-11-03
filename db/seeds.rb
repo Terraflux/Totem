@@ -7,10 +7,19 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+5.times do
+	Alias.create!(
+		name: Faker::Internet.user_name,
+		ipad: Faker::Internet.ip_v4_address)
+end
+
+aliases = Alias.all
+
 10.times do
 	Inscription.create!(
 		title: Faker::Lorem.sentence,
-		body: Faker::Lorem.paragraph)
+		body: Faker::Lorem.paragraph,
+		alias: aliases.sample)
 end
 
 inscriptions = Inscription.all
@@ -23,5 +32,6 @@ end
 
 scribbles = Scribble.all
 
+puts "#{Alias.count} aliases created"
 puts "#{Inscription.count} inscriptions created"
 puts "#{Scribble.count} scribbles created"

@@ -1,7 +1,7 @@
 class Alias < ActiveRecord::Base
 
-
 	before_save {self.name = name.downcase}
+
 	has_many :inscriptions, dependent: :destroy
 	has_many :scribbles, dependent: :destroy
 
