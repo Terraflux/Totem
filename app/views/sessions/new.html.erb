@@ -1,0 +1,15 @@
+<h1>Sign in</h1>
+
+<div class="row">
+	<div class="col-md-8">
+		<%= form_for :session, url: sessions_path do |f| %>
+			<div class="form-group">
+				<%= f.label :name %>
+				<%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "Enter Alias" %>
+			</div>
+			<div class="form-group">
+				<%= f.submit "Sign In", class: 'btn btn-success' %>
+			</div>
+		<% end %>
+	</div>
+</div>

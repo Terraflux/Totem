@@ -1,5 +1,7 @@
 class InscriptionsController < ApplicationController
 
+	before_action :require_sign_in, except: [:index, :show]
+
 	def index
 		@inscriptions = Inscription.all
 	end
@@ -14,6 +16,7 @@ class InscriptionsController < ApplicationController
 
 	def create
 		@inscription = Inscription.new(inscription_params)
+		@inscription.alias = current_alias
 		if @inscription.save
 			redirect_to @inscription, notice: "Inscription Created"
 		else
