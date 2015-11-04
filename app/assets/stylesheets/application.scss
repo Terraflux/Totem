@@ -7,13 +7,27 @@
 		 url('TQF_PCMedium.woff2') format('woff2');
 }
 
+@font-face {
+    font-family: 'Gill Sans';
+    src: url('GillSans.woff') format('woff'),
+		 url('GillSans.woff2') format('woff2');
+}
+
 body{
 	background-color: #1d1d1d;
-	font-family: "Tahoma","Verdana","Arial","Helvetica",sans-serif;;
+	font-family: 'Gill Sans';
+}
+
+.icon-bar{
+	color:#FFF;
 }
 
 .navbar{
-	background-color: #fff;
+	font-family: 'TQF';
+}
+
+.navbar-nav > li > a {
+	color: #FFF
 }
 
 .navbar-nav > li > a:hover {
@@ -33,10 +47,17 @@ label {
 	color: #FFF;
 }
 
-h1, h3 {
+h1{
 	color: #FFFFFF;
 	font-family: 'TQF';
+	display: inline;
 	}
+
+h3 {
+	color: #00A99D;
+	font-family: 'TQF';
+	display: inline;
+}
 
 a {
 	color: #00A99D;
@@ -55,6 +76,7 @@ p {
 .inscriptions {
 	border: #FFF 1px solid;
 	border-radius: 10px;
+	padding:20px 20px 20px 20px;
 }
 
 //inscription dates
@@ -72,6 +94,16 @@ p.date{
 .btn-success:hover {
 	background-color: #007F76;
 	border-color: #007F76;
+}
+
+.btn-default {
+	background-color: #6270d6;
+	border-color: #6270d6;
+}
+
+.btn-default:hover {
+	background-color: #4147b3;
+	border-color: #4147b3;
 }
 
 //delete button
