@@ -11,7 +11,7 @@ class AliasesController < ApplicationController
 	def create
 		@alias = Alias.new
 		@alias.name = params[:alias][:name]
-		@alias.ipad ||= request.ip
+		@alias.ipad = request.ip
 		if @alias.save
 			flash[:notice] = "Welcome #{@alias.name}"
 			create_session(@alias)

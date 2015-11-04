@@ -6,6 +6,7 @@ class ScribblesController < ApplicationController
 		@inscription = Inscription.find(params[:inscription_id])
 		@scribble = Scribble.new(scribble_params)
 		@scribble.alias = current_alias
+		@scribble.inscription = @inscription
 		@new_scribble = Scribble.new
 		if @scribble.save
 			flash[:notice] = "Scribble Created"
