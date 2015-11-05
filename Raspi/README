@@ -1,0 +1,101 @@
+
+ok so here's where the hardware integration is at:
+
+you need the following
+
+apt-get install hostapd
+apt-get install dnsmasq
+
+HOSTAPD COMMENTS
+
+now, there some bugs with how hostapd wrote its service code, so the following does not work on ubuntu, even tho it should:
+
+service hostapd restart
+
+it just craps out. You can dig into /etc/defaults and try to fix it, but it's a rat's nest and you have to do things like put sleep commands at weird places to prevent concurrency issues. But there's a better way to do it. That being said, these things might not be issues on the raspberry pi, since they don't use ubuntu. If you want to use it on ubuntu do the following:
+
+mv /etc/hostapd/hostapd.conf /etc/hostapd/hostapd.conf_old
+cp ./hostapd.conf /etc/hostapd/hostapd.conf
+sudo hostapd /etc/hostapd/hostapd.conf -dd
+
+use -B if you want it to run as a daemon. -dd makes debug output flow...
+
+
+However! you should look thru the hostapd.conf file and make appropriate changes, such as changing the SSID to something other than "TOTEM" unless that's what you want. Also, you need to figure out which wireless card you're going to be hosting the access point from. If you only have one card, you cannot be online at the same time as hosting an access point, becuase wireless cards only let you put them in one mode at a time. So, if you only have one wireless card, you may need to do something like turn NetworkManager off to stop it from keeping the device busy. Turning wifi off might work, too. It's complicated. Anyways, to determine the name of your interface, use the following command:
+
+ifconfig
+
+Your wireless card should appear as wlanx where x is some non-negative integer. So when I plug my usb wireless card in, ifconfig shows wlan0 and wlan4 for some reason. I set hostapd.conf to use my wlan4 card because my wlan0 card is pointed at the internet. Ok I think that's enough to get you started on that.
+
+
+DNSMASQ COMMENTS
+
+ok so the following should work after you install dnsmasq
+
+mv /etc/dnsmasq.conf /etc/dnsmasq.conf_old
+cp ./dnsmasq.conf /etc/dnsmasq.conf
+service dnsmasq restart
+
+
+So having done these two things, if they were successful, you should see a wireless access point pop up with the SSID you gave it. Hostapd creates the access point, dnsmasq assigns clients ip addresses, so when you connect to the access point, it will give you an address so it can route packets to you. 
+
+
+
+IPTABLES COMMENTS
+
+ok so here's the iptables lowdown. Iptables is a powerful program that can make lots of different kinds of firewalls. It requires sudo to run it, consequently.
+
+when packets come into your computer, they go thru a series of tables depending on where they are destined. Look in start_ap.sh to see the iptables script we are using.
+
+Keep in mind this is the part that is not working, so nothing here is sacred. I'll give you a quick overview of what these commands are supposed to be doing.
+
+iptables -F
+iptables -X
+iptables -t blahblah -F
+iptables -t blahblah -X
+
+These commands flush out the rules from iptables. the -t flag flushes the rules for the blahblah tables specifically.
+
+iptables -t nat -A PREROUTING --in-interface $AP_INTERFACE --protocol tcp -j DNAT --to-destination $LOCALHOST:$HTTP_PORT
+
+The following is what I think this command does, but I'm missing something important. This applies to the network address translation table (-t nat), which is involved in translating between "real world" ip addresses that are valid on the big internet and your local subnet ip address. So you might have noticed that when you type ifconfig, you get a different ip address than when you go to www.whatsmyip.com. This is because between you and your router and everyone else on your router, you have one name, and when you talk to websites you do so thru the router, which speaks on your behalf to the website. Your router has a "real" ip address that it uses to communicate across the web. 
+
+Ok, so the point of this command is that it's supposed to redirect every packet that the device sends out to anywhere and redirect it to our local rails server, which we have started with 
+
+rails s -b $LOCALHOST -p $HTTP_PORT
+
+where HTTP_PORT and LOCALHOST are some environment variables you can set or just replace with a literal
+
+rails s -b 10.0.0.123 -p 8080
+
+
+Ok, so the -A command means "add a rule" and the PREROUTING is a chain. Tables have chains, and the nat table has a chain called prerouting which is where packets end up before the kernel figures out where they are supposed to go (routed). So we are adding a rule to this prerouting chain in the nat table. The rule applies to the access point interface "AP_INTERFACE", which is again an environment variable you can replace with any literal you like (should be wlanx). The protocol that it is searching for is tcp, and if this rule is triggered, the iptables program jumps (-j) to the DNAT command, which stands for destination network address translation, which basically says "change the destination on this packet". --to-destination tells it which destination to change it to...
+
+But this isn't working, like I said. There's also -j REDIRECT commands which do something similar but different and maybe that's what we should be using. 
+
+
+WISPR COMMENTS
+
+Ok, I added a preamble to the erb template application html thing. It's the WISPR prefix (Wireless internet service provider rr.....). It's a standard that some OS creators have agreed to that goes something like "If I (the OS) try to connect to the internet and I get back a 301 redirect with a commented out XML prefix that looks like this, then I'll know I'm at a captive portal and I'll pull of the browser immediately to show the user what you sent me. (It's essentially bypassing ssl, which opens people up to mitm attacks, which might be why this protocol is so hard to find info on...scurity thru obscurity!). 
+
+
+
+I know this is a lot, but we're almost there.
+
+So basically, the entire user flow should look like this:
+
+User sees Totem access point (unlocked)
+User connects to it 
+Behind the scenes, their machine is given an ip address and starts making requests to see if it is really online (specific method varies across platforms)
+Totem redirects their requests to itself, responds with the message board that has a wispr prefix so the device immediately brings up the browser (android gives you an alert that takes you to it).
+
+
+This last step is the one that doesn't work and the more I think about it we should be using -j REDIRECT, but I need to go to sleep, so text me tomorrow and let me know if you get stuck.
+
+
+
+
+
+
+
+
