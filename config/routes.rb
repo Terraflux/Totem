@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   get '/*path' => "inscriptions#index", :code => 302, :via => [:get]
 
+  root 'inscriptions#index'
+
 end
