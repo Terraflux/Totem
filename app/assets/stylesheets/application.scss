@@ -1,2 +1,176 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@font-face {
+    font-family: 'TQF';
+    src: url('TQF_PCMedium.woff') format('woff'),
+		 url('TQF_PCMedium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Gill Sans';
+    src: url('GillSans.woff') format('woff'),
+		 url('GillSans.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('Montserrat-Bold.woff') format('woff'),
+		 url('Montserrat-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat-Regular.woff') format('woff'),
+		 url('Montserrat-Regular.woff2') format('woff2');
+}
+
+body{
+	background-color: #FFF;
+	font-family: 'Gill Sans';
+	color: #fff;
+}
+
+.title {
+	font-family: 'Montserrat';
+	color: #809EAD;
+	font-size: 40px;
+}
+
+.icon-bar{
+	color:#FFF;
+}
+
+.navbar{
+	font-family: 'Montserrat-Bold';
+}
+
+.navbar-nav > li > a {
+	color: #000
+}
+
+.navbar-nav > li > a:hover {
+	background-color: #FFF;
+	color: #000;
+}
+
+.left-padding {
+	padding-left: 15px;
+}
+
+.spacer {
+	margin-bottom: 20px;
+}
+
+label {
+	color: #000;
+}
+
+h1{
+	color: #809EAD;
+	font-family: 'Montserrat-Bold';
+	display: inline;
+	}
+
+h3 {
+	color: #4899C3;
+	font-family: 'Montserrat-Bold';
+	display: inline;
+}
+
+a {
+	color: #4899C3;
+}
+
+a:hover {
+	color: #4899C3;
+	text-decoration: none;
+}
+
+p {
+	font-size: 14px;
+}
+
+.new-scribble {
+	background-color: #E2E2E2;
+	border: #E2E2E2 1px solid;
+	padding:10px 10px 0px 10px;
+}
+
+.inscription {
+	border: #FFF 1px solid;
+	background-color: #282828;
+	padding:20px 20px 20px 20px;
+}
+
+.scribble {
+	border: #FFF 1px solid;
+	background-color: #FFF;
+	padding:20px 20px 20px 20px;
+	color: #000;
+	p.date {
+		color: #000;
+	}
+}
+
+//inscription dates
+p.date{
+	color:#BFBFBF;
+}
+
+//inscribe something button
+.inscribe-btn,
+.inscribe-btn:hover,
+.inscribe-btn,
+.btn-success:focus,
+.save-btn,
+.save-btn:hover,
+.btn-success:focus {
+	background-color: #4899C3;
+	color: #FFFFFF;
+	border-color: #4899C3;
+}
+
+//submit button
+.btn-default {
+	margin-top: 20px;
+	background-color: #4899C3;
+	border-color: #4899C3;
+	color: #fff;
+}
+
+.btn-default:hover {
+	background-color: #4899C3;
+	border-color: #4899C3;
+}
+
+//delete button
+.btn-danger {
+	background-color: #C95B88;
+	border-color: #C95B88;
+}
+
+.btn-danger:hover {
+	background-color: #CE3A49;
+	border-color: #CE3A49;
+}
+
+//edit button
+.edit{
+    background-color: #49C182;
+    border-color: #49C182;
+    color: #fff;
+}
+
+.edit:hover{
+    background-color: #007f76;
+    border-color: #007f76;
+}
+
+
+//alerts
+.alert-success {
+    background-color: #00A99D;
+    border-color: #00A99D;
+    color: #fff;
+}

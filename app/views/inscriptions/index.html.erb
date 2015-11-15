@@ -1,8 +1,21 @@
-<h1>Inscriptions <%= link_to "Inscribe Something", new_inscription_path, class: 'btn btn-success' %> 
-</h1>
-
 <div class="row">
-	<div class="col-md-8">
-		<%= render @inscriptions %>
+	<div class="col-md-8 col-md-offset-2 spacer">
+<div class="text-center">
+			<%= image_tag('TotemBird.png', :size => "220x160") %>
+			<div class="title">
+				Totem
+			</div>
+		</div>
+		<div class="spacer">
+		</div>
+		<div class="text-center">
+		<%= link_to "Inscribe Something", new_inscription_path, class: 'btn inscribe-btn' %> <div class="spacer"></div>
+		</div>
+		<div class="spacer">
+		</div>
+		<div class="inscriptions">
+			<%= render @inscriptions %>
+		</div>
+
 	</div>
 </div>

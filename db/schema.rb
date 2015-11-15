@@ -11,22 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027154040) do
+ActiveRecord::Schema.define(version: 20151103224300) do
+
+  create_table "aliases", force: :cascade do |t|
+    t.string   "name"
+    t.string   "ipad"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "inscriptions", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "alias_id"
   end
+
+  add_index "inscriptions", ["alias_id"], name: "index_inscriptions_on_alias_id"
 
   create_table "scribbles", force: :cascade do |t|
     t.text     "body"
     t.integer  "inscription_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "alias_id"
   end
 
+  add_index "scribbles", ["alias_id"], name: "index_scribbles_on_alias_id"
   add_index "scribbles", ["inscription_id"], name: "index_scribbles_on_inscription_id"
 
 end

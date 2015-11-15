@@ -1,9 +1,9 @@
 <div class="media">
-	<div class="media-body">
+	<div class="media-body inscription">
 		<h3><%= link_to inscription.title, inscription %></h3>
 		<small>
 			<p><%= inscription.body %></p>
-			<p><%= inscription.created_at %></p>
+			<p class="date"><%= time_ago_in_words(inscription.created_at) %> ago</p>
 		</small>
 	</div>
 </div>

@@ -29,34 +29,46 @@
 </head>
 <body>
 
-
+<div class="spacer">
+</div>
+<div class="container">
+		
+		<%= yield %>
+		<div class="container">
+			<div class="flash">
+				<% if flash[:notice] %>
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:notice] %>
+					</div>
+				<% elsif flash[:error] %>
+					<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:error] %>
+					</div>
+				<% elsif flash[:alert] %>
+					<div class="alert alert-warning">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:alert] %>
+					</div>
+				<% end %>
+			</div>
 
 	<div class="container navbar">
-		<div class="navblock pull-left"><%= link_to "Inscriptions", root_path %></div>
-	</div>
-
-
-	<div class="container navbar">
-		<div class="flash">
-			<% if flash[:notice] %>
-				<div class="alert alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<%= flash[:notice] %>
-				</div>
-			<% elsif flash[:error] %>
-				<div class="alert alert-danger">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<%= flash[:error] %>
-				</div>
-			<% elsif flash[:alert] %>
-				<div class="alert alert-warning">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<%= flash[:alert] %>
-				</div>
+		<div class="navblock pull-left">
+			<%= link_to "Inscriptions", root_path %>
+		</div>
+		<div class="navblock pull-right">
+			<% if current_alias %>
+				<%= current_alias.name %> - <%= link_to "Sign Out", session_path(current_alias), method: :delete %>
+			<% else %>
+				<%= link_to "Sign In", new_session_path %> or 
+				<%= link_to "Sign Up", new_alias_path %>
 			<% end %>
 		</div>
 	</div>
-<%= yield %>
+		</div>
+	</div>
 
 </body>
 </html>

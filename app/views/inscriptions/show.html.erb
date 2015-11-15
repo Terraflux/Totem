@@ -1,22 +1,54 @@
-<div class="header">
-	<h1>
-		<%= render @inscription %>
-	</h1>
-</div>
-<div class="row">
-	<div class="col-md-8">
-		<div class="header">
-			<%= link_to "Edit", edit_inscription_path, class: 'btn btn-success' %>
+<nav class="navbar navbar-static-top">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			</button>
 		</div>
-		<div class="header">
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><%= link_to "\< GO BACK", root_path %></li>
+		</div><!-- /.navbar-collapse -->
+</nav>
+
+
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 header">
+		<div class="left-padding">
+			<%= render @inscription %>
+		</div>
+	</div>
+</div>
+<div class="spacer"></div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="pull-right">
+			<%= link_to "Edit", edit_inscription_path, class: 'btn btn-success edit' %>
+		
 			<%= link_to "Delete", @inscription, method: :delete, class: 'btn btn-danger', data: {confirm: 'Destroy Inscription?'} %>
 		</div>
 		<div>
+	</div>
+</div>
+<div class="row">
+<div class="spacer"></div>
+	<div class="col-md-8 col-md-offset-2">
+		<div class="left-padding">
 			<h3>Scribbles</h3>
-			<div class='js-scribbles'>
-				<%= render @inscription.scribbles %>
+			<div class='js-scribbles scribble'>
+				<p><%= render @inscription.scribbles %></p>
 			</div>
 		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
 		<div>
 			<div class='new-scribble'>
 				<%= render 'scribbles/form', scribble: Scribble.new, inscription: @inscription %>
